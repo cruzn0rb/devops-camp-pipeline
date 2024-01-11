@@ -14,7 +14,7 @@ pipeline {
         stage('Application repository') {
             steps {
                 echo "Cloning application repository"
-                sh 'git clone https://github.com/cruzn0rb/afs-labs-student.git'
+                sh 'git clone https://github.com/cruzn0rb/devops-camp-pipeline.git'
                 dir('afs-labs-student') {
                     withCredentials([usernamePassword(credentialsId: 'dnorberto-harbor-auth', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     script {
