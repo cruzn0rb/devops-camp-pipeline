@@ -9,6 +9,7 @@ pipeline {
         HARBOR_PROJECT = ' dnorberto-harbor-auth'
         APP_IMAGE_NAME = 'app'
         DB_IMAGE_NAME = 'db'
+    }
     stages {
         stage('Application repository') {
             steps {
@@ -99,5 +100,4 @@ pipeline {
             sh 'rm -rf .git ./*'
         }
     }
-}
 }
