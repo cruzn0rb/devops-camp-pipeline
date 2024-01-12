@@ -17,7 +17,7 @@ pipeline {
                 dir('afs-labs-student') {
                     script {
                         env.COMMIT_HASH = sh(script: 'git log --format=format:%h -1 --follow database/database.sql', returnStdout: true).trim()
-                    }
+                    }s
                 }
                 withCredentials([usernamePassword(credentialsId: 'dnorberto-harbor-auth', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     script {
@@ -30,7 +30,7 @@ pipeline {
             steps {
                   withCredentials([usernamePassword(credentialsId: 'dnorberto-harbor-auth', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                       echo "Scanning $APP_IMAGE_NAME image"
-                      sh 'python harbor_scanner.py -i $APP_IMAGE_NAME -r $HARBOR_REGISTRY -p $HARBOR_PROJECT -c ${USERNAME}:${PASSWORD}'
+                      sh 'python harbor_scanner.py -i $DB_IMAGE_NAME -r $HARBOR_REGISTRY -p $HARBOR_PROJECT -c ${USERNAME}:${PASSWORD}'
                   }
             }
         }
